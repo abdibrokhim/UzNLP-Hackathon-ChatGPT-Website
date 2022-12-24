@@ -21,9 +21,15 @@
         <main
           class="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1"
         >
-          <div class="flex-1 overflow-hidden"></div>
+          <div class="flex-1">
+            <div
+              class="stretch mx-2 flex flex-row gap-3 pt-2 last:mb-2 md:last:mb-6 lg:mx-auto lg:max-w-3xl lg:pt-6"
+            >
+              <ul data-chat-list class="space-y-2 w-full"></ul>
+            </div>
+          </div>
           <div
-            class="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient"
+            class="w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient"
           >
             <form
               data-chat-form
@@ -39,13 +45,10 @@
                   <textarea
                     data-chat-textarea
                     tabindex="0"
-                    data-id="root"
-                    style="max-height: 200px"
                     rows="1"
-                    placeholder=""
+                    placeholder="Question"
                     class="m-0 w-full resize-none border-0 bg-transparent p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent"
-                  >
-                  </textarea>
+                  ></textarea>
                   <button
                     type="submit"
                     class="absolute p-1 rounded-md text-gray-500 bottom-1.5 right-1 md:bottom-2.5 md:right-2 hover:bg-gray-100 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"
@@ -80,6 +83,7 @@
           >
             <nav class="flex h-full flex-1 flex-col space-y-1 p-2">
               <a
+              href="/"
                 class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"
               >
                 <svg
@@ -107,27 +111,52 @@
     <script>
       const elChatForm = document.querySelector("[data-chat-form]");
       const elChatTextarea = document.querySelector("[data-chat-textarea]");
+      const elChatList = document.querySelector("[data-chat-list]");
 
       elChatForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
 
         generateAnswer(elChatTextarea.value);
-      })
+      });
 
       function generateAnswer(question) {
         console.log("Generating answer...");
+        elChatList.appendChild(getChatItem(question));
 
         const url = `http://127.0.0.1:8000/api?question=${question}?`;
 
         fetch(url, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
         })
           .then((response) => response.text())
-          .then((responseText) => console.log(responseText))
-          .catch((error) => console.error(error));
+          .then((responseText) =>
+            elChatList.appendChild(getChatItem(responseText, true))
+          )
+          .catch((error) =>
+            elChatList.appendChild(getChatItem(error.toString(), true))
+          );
+      }
+
+      function getChatItem(content, isAnswer) {
+        const elLi = document.createElement("li");
+        const elDiv = document.createElement("div");
+
+        console.log(content);
+
+        elDiv.classList.add(
+          "relative",
+          "max-w-xl",
+          "px-4",
+          "py-2",
+          "text-gray-700",
+          "rounded",
+          "shadow",
+          !isAnswer ? "bg-gray-100" : "a"
+        );
+        elDiv.textContent = content.toString();
+        elLi.classList.add("flex", isAnswer ? "justify-start" : "justify-end");
+        elLi.appendChild(elDiv);
+        return elLi;
       }
     </script>
   </body>
