@@ -6,11 +6,10 @@ from gpt import to_gpt
 
 import openai
 
-
 app = FastAPI()
 
 @app.post('/api')
-async def genre_words(question:str):
+async def genre_words(question: str):
     """ Check sentense and make report list """
 
     result = to_gpt(question)
