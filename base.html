@@ -1,76 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" class="jsx-5be976455d976918" />
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+      class="jsx-5be976455d976918"
+    />
     <title>New chat</title>
     <meta name="next-head-count" content="4" />
     <link rel="preload" href="style.css" as="style" />
     <link rel="stylesheet" href="style.css" data-n-g="" />
     <noscript data-n-css=""></noscript>
     <style data-styled="" data-styled-version="5.3.5"></style>
-</head>
+  </head>
 
-<body>
-    <div id="__next">
-        <div class="overflow-hidden w-full z-20 h-full relative">
-            <div class="flex h-full flex-1 flex-col md:pl-[260px]">
-                <main class="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1">
-                    <div class="flex-1 overflow-hidden"></div>
-                    <div class="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient">
-                        <form class="stretch mx-2 flex flex-row gap-3 pt-2 last:mb-2 md:last:mb-6 lg:mx-auto lg:max-w-3xl lg:pt-6">
-                            <div class="relative flex h-full flex-1 md:flex-col">
-                                <div class="ml-1 mt-1.5 md:w-full md:m-auto md:flex md:mb-2 gap-2 justify-center"></div>
-                                <div class="flex flex-col w-full py-2 pl-3 flex-grow md:py-3 md:pl-4 relative border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]">
-                                    <textarea tabindex="0" data-id="root" style="max-height:200px" rows="1" placeholder="" class="m-0 w-full resize-none border-0 bg-transparent p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent">
-                                    </textarea>
-                                    <button onClick="generateAnswer()" class="absolute p-1 rounded-md text-gray-500 bottom-1.5 right-1 md:bottom-2.5 md:right-2 hover:bg-gray-100 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent">
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" class="h-4 w-4 rotate-90" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </main>
-            </div>
-            <div class="dark hidden bg-gray-900 md:fixed md:inset-y-0 md:flex md:w-[260px] md:flex-col">
-                <div class="flex h-full min-h-0 flex-col ">
-                    <div class="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20">
-                        <nav class="flex h-full flex-1 flex-col space-y-1 p-2">
-                            <a class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20">
-                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                                New chat
-                            </a>
-                        </nav>
-                    </div>
+  <body>
+    <div class="overflow-hidden w-full z-20 h-full relative">
+      <div class="flex h-full flex-1 flex-col md:pl-[260px]">
+        <main
+          class="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1"
+        >
+          <div class="flex-1 overflow-hidden"></div>
+          <div
+            class="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient"
+          >
+            <form
+              data-chat-form
+              class="stretch mx-2 flex flex-row gap-3 pt-2 last:mb-2 md:last:mb-6 lg:mx-auto lg:max-w-3xl lg:pt-6"
+            >
+              <div class="relative flex h-full flex-1 md:flex-col">
+                <div
+                  class="ml-1 mt-1.5 md:w-full md:m-auto md:flex md:mb-2 gap-2 justify-center"
+                ></div>
+                <div
+                  class="flex flex-col w-full py-2 pl-3 flex-grow md:py-3 md:pl-4 relative border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]"
+                >
+                  <textarea
+                    data-chat-textarea
+                    tabindex="0"
+                    data-id="root"
+                    style="max-height: 200px"
+                    rows="1"
+                    placeholder=""
+                    class="m-0 w-full resize-none border-0 bg-transparent p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent"
+                  >
+                  </textarea>
+                  <button
+                    type="submit"
+                    class="absolute p-1 rounded-md text-gray-500 bottom-1.5 right-1 md:bottom-2.5 md:right-2 hover:bg-gray-100 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 20 20"
+                      class="h-4 w-4 rotate-90"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                      ></path>
+                    </svg>
+                  </button>
                 </div>
-            </div>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+      <div
+        class="dark hidden bg-gray-900 md:fixed md:inset-y-0 md:flex md:w-[260px] md:flex-col"
+      >
+        <div class="flex h-full min-h-0 flex-col">
+          <div
+            class="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20"
+          >
+            <nav class="flex h-full flex-1 flex-col space-y-1 p-2">
+              <a
+                class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4 w-4"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                New chat
+              </a>
+            </nav>
+          </div>
         </div>
+      </div>
     </div>
     <script>
-        function generateAnswer() {
-            console.log("Generating answer...");
+      const elChatForm = document.querySelector("[data-chat-form]");
+      const elChatTextarea = document.querySelector("[data-chat-textarea]");
 
-            const url = 'http://127.0.0.1:8000/api?question=Where is the capital of Russia?';
+      elChatForm.addEventListener("submit", (evt) => {
+        evt.preventDefault();
 
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            .then(response => response.text())
-            .then(responseText => console.log(responseText))
-            .catch(error => console.error(error));
-        }
+        generateAnswer(elChatTextarea.value);
+      })
+
+      function generateAnswer(question) {
+        console.log("Generating answer...");
+
+        const url = `http://127.0.0.1:8000/api?question=${question}?`;
+
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.text())
+          .then((responseText) => console.log(responseText))
+          .catch((error) => console.error(error));
+      }
     </script>
-</body>
+  </body>
 </html>
