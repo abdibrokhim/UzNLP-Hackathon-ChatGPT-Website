@@ -83,7 +83,7 @@
           >
             <nav class="flex h-full flex-1 flex-col space-y-1 p-2">
               <a
-              href="/"
+              href="base.html"
                 class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"
               >
                 <svg
@@ -123,10 +123,16 @@
         console.log("Generating answer...");
         elChatList.appendChild(getChatItem(question));
 
-        const url = `http://127.0.0.1:8000/api?question=${question}?`;
+        const url = `http://127.0.0.1:8000/api/v1/copilot/?text=${question}`;
 
         fetch(url, {
+          credentials: 'include',
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+          },
         })
           .then((response) => response.text())
           .then((responseText) =>
